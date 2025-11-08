@@ -3,6 +3,14 @@ import React from 'react';
 const Work = () => {
   const projects = [
     {
+      title: "SOUNDTUDYS",
+      description: "A sound study platform for exploring and learning about audio. Interactive web application for sound exploration and educational purposes.",
+      tech: ["React", "Web Audio", "Frontend", "Interactive"],
+      status: "COMPLETED",
+      url: "https://soundtudys-onfr0y.vercel.app/",
+      featured: true
+    },
+    {
       title: "FARADAY'S LAW SIMULATION",
       description: "Interactive 3D physics simulation demonstrating electromagnetic induction. Move a magnet through a coil to generate voltage and light up a bulb.",
       tech: ["React", "Three.js", "WebGL", "Physics"],
