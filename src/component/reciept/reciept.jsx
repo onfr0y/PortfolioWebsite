@@ -1,11 +1,8 @@
 import React, { useState, useRef } from 'react';
 import profileImage from '../../assets/profile.PNG';
-import notonfr0ywall from '../../assets/notonfr0ywall.jpg';
-import pitchImage from '../../assets/PitchImage.JPG';
 import SkillsGlobe from '../globe/SkillsGlobe';
 
 const App = () => {
-    const [mainPhoto, setMainPhoto] = useState(profileImage);
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
     const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
     const [isHovering, setIsHovering] = useState(false);
@@ -86,7 +83,7 @@ const App = () => {
                             >
                                 {/* Main Photo Display */}
                                 <img
-                                    src={mainPhoto}
+                                    src={profileImage}
                                     alt="Kittisak Porkha"
                                     className="w-full h-full object-cover object-center"
                                     loading="eager"
@@ -114,49 +111,6 @@ const App = () => {
                 {/* Right Column - Photo Thumbnails & Info */}
                 <div className="col-span-12 lg:col-span-3 order-2 lg:order-3">
                     <div className="lg:sticky lg:top-24">
-                        {/* Photo Thumbnails - Similar to e-commerce product gallery */}
-                        <div className="grid grid-cols-3 lg:grid-cols-1 gap-3 lg:space-y-3 mb-6 lg:mb-8">
-                            <button 
-                                onClick={() => setMainPhoto(profileImage)}
-                                className={`w-full aspect-square bg-gray-100 border-2 transition-all overflow-hidden ${
-                                    mainPhoto === profileImage ? "border-black" : "border-gray-200 hover:border-gray-300"
-                                }`}
-                                aria-label="Select photo"
-                            >
-                                <img 
-                                    src={profileImage} 
-                                    alt="Profile"
-                                    className="w-full h-full object-cover"
-                                />
-                            </button>
-                            <button 
-                                onClick={() => setMainPhoto(pitchImage)}
-                                className={`w-full aspect-square bg-gray-100 border-2 transition-all overflow-hidden ${
-                                    mainPhoto === pitchImage ? "border-black" : "border-gray-200 hover:border-gray-300"
-                                }`}
-                                aria-label="Select photo"
-                            >
-                                <img 
-                                    src={pitchImage} 
-                                    alt="Pitch image"
-                                    className="w-full h-full object-cover"
-                                />
-                            </button>
-                            <button 
-                                onClick={() => setMainPhoto(notonfr0ywall)}
-                                className={`w-full aspect-square bg-gray-100 border-2 transition-all overflow-hidden ${
-                                    mainPhoto === notonfr0ywall ? "border-black" : "border-gray-200 hover:border-gray-300"
-                                }`}
-                                aria-label="Select photo"
-                            >
-                                <img 
-                                    src={notonfr0ywall} 
-                                    alt="Profile view"
-                                    className="w-full h-full object-cover"
-                                />
-                            </button>
-                        </div>
-
                         {/* Name & Title */}
                         <div className="space-y-8">
                             <div>
