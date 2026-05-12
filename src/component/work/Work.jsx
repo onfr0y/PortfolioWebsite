@@ -3,11 +3,19 @@ import React from 'react';
 const Work = () => {
   const projects = [
     {
-      title: "SOUNDTUDYS",
+      title: "TWO TEEN STORY PODCAST",
+      description: "A podcast web application for teenagers to share stories and experiences.",
+      tech: ["React", "Frontend", "Audio"],
+      status: "COMPLETED",
+      url: "https://two-teen-story.vercel.app/",
+      featured: true
+    },
+    {
+      title: "SOUNDOS",
       description: "A sound study platform for exploring and learning about audio. Interactive web application for sound exploration and educational purposes.",
       tech: ["React", "Web Audio", "Frontend", "Interactive"],
       status: "COMPLETED",
-      url: "https://soundtudys-onfr0y.vercel.app/",
+      url: "https://soundos-onfr0y.vercel.app/",
       featured: true
     },
     {
