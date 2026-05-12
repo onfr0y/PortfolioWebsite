@@ -2,21 +2,7 @@ import React, { useState, useRef } from 'react';
 import profileImage from '../../assets/profile.PNG';
 import notonfr0ywall from '../../assets/notonfr0ywall.jpg';
 import pitchImage from '../../assets/PitchImage.JPG';
-
-const skillsData = {
-    "Languages": ["HTML", "CSS", "JavaScript", "TypeScript"],
-    "Frameworks": ["React", "Next.js"],
-    "Styling": ["Tailwind CSS", "Styled Comp."],
-    "Tools": ["Git", "Figma", "Vite"]
-};
-
-const ScratchItem = ({ text }) => {
-    return (
-        <div className="scratch-item relative select-none">
-            <span className="font-mono text-sm">{text}</span>
-        </div>
-    );
-};
+import SkillsGlobe from '../globe/SkillsGlobe';
 
 const App = () => {
     const [mainPhoto, setMainPhoto] = useState(profileImage);
@@ -50,24 +36,23 @@ const App = () => {
         <div className="w-full min-h-screen bg-white">
             {/* Three-column layout similar to e-commerce reference */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 grid grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
-                {/* Left Column - Skills Info */}
+                {/* Left Column - Skills label */}
                 <div className="col-span-12 lg:col-span-3 order-3 lg:order-1">
                     <div className="lg:sticky lg:top-24">
-                        <h2 className="text-xs uppercase tracking-wider mb-4 sm:mb-6 font-mono text-gray-600">SKILLS & COMPOSITION</h2>
+                        <h2 className="text-xs uppercase tracking-wider mb-4 sm:mb-6 font-mono text-gray-600">SKILLS & STACK</h2>
                         <div className="font-mono text-xs leading-relaxed text-gray-800 space-y-4">
                             <div>
-                                <p className="font-semibold mb-2">SKILLS OVERVIEW</p>
+                                <p className="font-semibold mb-2">OVERVIEW</p>
                                 <p className="text-gray-600">
-                                    Comprehensive skill set in modern web development technologies.
-                                    Focus on clean code, responsive design, and user experience.
+                                    Modern web stack with focus on clean code,
+                                    responsive design, and great user experience.
                                 </p>
                             </div>
                             <div className="pt-4 border-t border-gray-200">
-                                <p className="font-semibold mb-2">TECHNICAL STACK</p>
+                                <p className="font-semibold mb-2">INTERACTION</p>
                                 <p className="text-gray-600">
-                                    Frontend: React, Next.js, TypeScript<br/>
-                                    Styling: Tailwind CSS, Styled Components<br/>
-                                    Tools: Git, Figma, Vite
+                                    Drag the globe to spin it.<br/>
+                                    Hover the photo to tilt it.
                                 </p>
                             </div>
                         </div>
@@ -118,27 +103,10 @@ const App = () => {
                             </div>
                         </div>
                         
-                        {/* Skills Section with Glassmorphism and Blur */}
-                        <div className="relative w-full max-w-md">
-                            {/* Glassmorphism background with blur */}
-                            <div className="absolute inset-0 bg-white/60 backdrop-blur-lg rounded-lg border border-white/30 shadow-xl" />
-                            
-                            <div className="relative z-10 p-6 sm:p-8">
-                                <h1 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 tracking-tight">SKILLS</h1>
-                                
-                                <div className="space-y-6">
-                                    {Object.entries(skillsData).map(([category, skills], index) => (
-                                        <div key={category} className={index > 0 ? 'pt-6 border-t border-gray-200/50' : ''}>
-                                            <p className="text-xs uppercase tracking-wider mb-3 font-semibold text-gray-500">{category}</p>
-                                            <div className="space-y-2">
-                                                {skills.map(skill => (
-                                                    <ScratchItem key={skill} text={skill} />
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                        {/* Skills Globe */}
+                        <div className="flex flex-col items-center">
+                            <p className="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">drag to rotate</p>
+                            <SkillsGlobe radius={130} />
                         </div>
                     </div>
                 </div>
