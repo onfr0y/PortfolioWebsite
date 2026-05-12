@@ -1,24 +1,35 @@
 @import "tailwindcss";
 
 html, body {
-  height: 100%;
-  overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ensure scrolling works properly */
-html {
-  scroll-behavior: smooth;
+/* overflow-x clip (not hidden) prevents horizontal scrollbars without
+   creating a scroll container — keeps position: sticky working on descendants */
+html, body {
+  overflow-x: clip;
 }
 
-/* Clean, minimalist styles */
 * {
   box-sizing: border-box;
 }
 
+/* Scroll-driven theme — interpolates from white to dark silver as user scrolls.
+   Progress is set as --theme-progress (0..1) by App.jsx; color-mix handles the lerp. */
+:root {
+  --theme-progress: 0;
+  --theme-bg:     color-mix(in srgb, #ffffff, #1d1d1f calc(var(--theme-progress) * 100%));
+  --theme-text:   color-mix(in srgb, #0a0a0a, #ffffff calc(var(--theme-progress) * 100%));
+  --theme-soft:   color-mix(in srgb, #374151, #e5e7eb calc(var(--theme-progress) * 100%));
+  --theme-muted:  color-mix(in srgb, #6b7280, #a1a1aa calc(var(--theme-progress) * 100%));
+  --theme-faint:  color-mix(in srgb, #9ca3af, #71717a calc(var(--theme-progress) * 100%));
+  --theme-border: color-mix(in srgb, #e5e7eb, #2a2a2d calc(var(--theme-progress) * 100%));
+}
+
 body {
-  background: white;
-  color: #000;
+  background: var(--theme-bg);
+  color: var(--theme-text);
+  transition: background-color 0.05s linear;
 }

@@ -29,7 +29,14 @@ function Headerbar() {
   };
 
   return (
-    <header className="w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 sm:py-6 bg-white border-b border-gray-100">
+    <header
+      className="w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 sm:py-6"
+      style={{
+        backgroundColor: 'var(--theme-bg)',
+        color: 'var(--theme-text)',
+        borderBottom: '1px solid var(--theme-border)',
+      }}
+    >
       {/* Left: Menu - Mobile */}
       <button 
         className="lg:hidden cursor-pointer"
@@ -68,7 +75,8 @@ function Headerbar() {
             <li key={item.name}>
               <button
                 onClick={() => scrollToSection(item.href)}
-                className="text-xs xl:text-sm font-medium text-black hover:opacity-70 transition-opacity uppercase tracking-wide"
+                className="text-xs xl:text-sm font-medium hover:opacity-70 transition-opacity uppercase tracking-wide"
+                style={{ color: 'var(--theme-text)' }}
               >
                 {item.name}
               </button>
