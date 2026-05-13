@@ -14,10 +14,10 @@ const PROJECTS = [
   },
   {
     num: '02',
-    title: 'SOUNDOS',
+    title: 'EXISTENTIAL OS',
     label: 'WEB AUDIO, 2024',
     tech: ['React', 'Web Audio'],
-    url: 'https://soundos-onfr0y.vercel.app/',
+    url: 'https://www.existentialos.xyz/',
     image: soundosPreview,
     w: 360, h: 290,
     left: 1080, topPct: 8,
