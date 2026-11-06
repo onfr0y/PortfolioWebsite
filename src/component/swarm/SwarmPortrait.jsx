@@ -16,14 +16,18 @@ export default function SwarmPortrait() {
     const photo = new Image();
     let frame = 0;
     let started = false;
+    try { started = sessionStorage.getItem('portfolio-portrait-seen') === '1'; } catch { /* Storage may be unavailable. */ }
     let visible = false;
     let disposed = false;
+    let running = false;
 
     const stop = () => {
       cancelAnimationFrame(frame);
       host.classList.remove('is-assembling');
+      running = false;
     };
-    const play = () => {
+    const play = (mode = 'normal') => {
+      if (mode === 'hover' && running) return;
       stop();
       if (!media.matches || !photo.complete || !photo.naturalWidth || !visible) return;
       const { width, height } = host.getBoundingClientRect();
@@ -53,9 +57,11 @@ export default function SwarmPortrait() {
         return { x: i % cols, y: Math.floor(i / cols), angle: random * Math.PI * 2, radius: 0.15 + random * 0.33, delay: random * 400 };
       });
       host.classList.add('is-assembling');
+      running = true;
+      const speed = mode === 'slow' ? 3 : 1;
       const start = performance.now();
       const draw = now => {
-        const elapsed = now - start;
+        const elapsed = (now - start) / speed;
         context.clearRect(0, 0, width, height);
         for (const p of particles) {
           const local = Math.max(0, elapsed - p.delay);
@@ -85,11 +91,11 @@ export default function SwarmPortrait() {
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       if (!visible) stop();
-      else if (!started && photo.complete && photo.naturalWidth) { started = true; play(); }
+      else if (!started && photo.complete && photo.naturalWidth) { started = true; try { sessionStorage.setItem('portfolio-portrait-seen', '1'); } catch { /* Optional storage. */ } play(); }
     }, { threshold: 0.25 });
     observer.observe(host);
     photo.onload = () => {
-      if (!disposed && visible && !started) { started = true; play(); }
+      if (!disposed && visible && !started) { started = true; try { sessionStorage.setItem('portfolio-portrait-seen', '1'); } catch { /* Optional storage. */ } play(); }
     };
     photo.src = portrait;
     const onVisibility = () => { if (document.hidden) stop(); };
@@ -110,13 +116,16 @@ export default function SwarmPortrait() {
 
   return (
     <figure className="swarm-portrait">
-      <div ref={hostRef} className="swarm-stage" onPointerEnter={event => { if (event.pointerType === 'mouse') replayRef.current(); }} onClick={() => replayRef.current()}>
+      <div ref={hostRef} className="swarm-stage">
         <img src={portrait} alt="Kittisak Porkha" fetchPriority="high" />
         <canvas ref={canvasRef} aria-hidden="true" />
       </div>
       <figcaption className="swarm-caption">
-        <span>Tap or hover to scatter and rebuild.</span>
-        <button type="button" onClick={() => replayRef.current()}>Rebuild portrait ↗</button>
+        <span>Rebuild on demand.</span>
+        <div className="swarm-controls">
+          <button type="button" onClick={() => replayRef.current()}>Rebuild portrait ↗</button>
+          <button type="button" onClick={() => replayRef.current('slow')}>Slow rebuild ↗</button>
+        </div>
       </figcaption>
     </figure>
   );

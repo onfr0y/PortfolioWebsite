@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
+import PageRebuild from './component/swarm/PageRebuild'
 
 // component
 import Reciept from './component/reciept/reciept'
@@ -82,6 +83,7 @@ function App() {
   return (
     <>
 
+    <PageRebuild />
     <BlurredBackground>
       {/* Default sticky header — fades out when dock mode activates */}
       <div

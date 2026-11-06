@@ -15,3 +15,6 @@
 }
 
 @media (pointer: coarse) { .swarm-caption button { min-height: 44px; padding: 8px 0 8px 12px; } .swarm-caption { align-items: center; } }
+
+.swarm-caption { flex-wrap: wrap; }
+.swarm-controls { display: flex; flex-wrap: wrap; gap: 16px; }

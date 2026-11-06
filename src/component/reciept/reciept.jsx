@@ -22,7 +22,7 @@ const App = () => {
                                 <p className="font-semibold mb-2">INTERACTION</p>
                                 <p className="text-gray-600">
                                     Drag the globe to spin it.<br/>
-                                    Tap or hover over the portrait to rebuild it.
+                                    Use the buttons below the portrait to rebuild it.
                                 </p>
                             </div>
                         </div>
