@@ -1,0 +1,17 @@
+.swarm-portrait { width: 100%; margin: 0 0 2.5rem; }
+.swarm-stage { position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; background: #f3f1eb; }
+.swarm-stage img, .swarm-stage canvas { width: 100%; height: 100%; object-fit: cover; display: block; }
+.swarm-stage canvas { position: absolute; inset: 0; pointer-events: none; visibility: hidden; }
+.swarm-stage.is-assembling img { opacity: 0; }
+.swarm-stage.is-assembling canvas { visibility: visible; }
+.swarm-caption { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; font: 10px monospace; letter-spacing: .08em; text-transform: uppercase; color: #66645f; }
+.swarm-caption button { display: none; cursor: pointer; text-underline-offset: 4px; }
+.swarm-caption button:hover { text-decoration: underline; }
+.swarm-caption button:focus-visible { outline: 2px solid #555; outline-offset: 5px; }
+@media (prefers-reduced-motion: no-preference) { .swarm-caption button { display: block; } }
+@media (prefers-reduced-motion: reduce) {
+  .swarm-stage.is-assembling img { opacity: 1; }
+  .swarm-stage.is-assembling canvas { visibility: hidden; }
+}
+
+@media (pointer: coarse) { .swarm-caption button { min-height: 44px; padding: 8px 0 8px 12px; } .swarm-caption { align-items: center; } }

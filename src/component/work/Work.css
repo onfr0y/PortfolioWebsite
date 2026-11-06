@@ -1,0 +1,13 @@
+/* Keep the complete project collection readable without a horizontal scroll on small screens. */
+@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  .work-scroll { height: auto !important; }
+  .work-stage { position: relative; height: auto; padding: 5rem 1.5rem; }
+  .work-heading { position: relative; top: auto; left: auto; margin-bottom: 3rem; }
+  .work-heading h2 { font-size: 40px !important; }
+  .work-scroll-hint, .work-counter { display: none; }
+  .work-track { position: relative; width: 100% !important; height: auto; transform: none !important; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 3rem 2rem; }
+  .work-card { position: relative; left: auto !important; top: auto !important; width: 100% !important; transform: none !important; }
+  .work-preview { width: 100% !important; height: 340px !important; }
+  .work-preview > div { transform: none !important; }
+  .work-card > div:last-child { opacity: 1 !important; }
+}

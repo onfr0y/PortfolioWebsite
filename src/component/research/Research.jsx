@@ -14,26 +14,30 @@ const t = {
 };
 
 const Research = () => {
-  const [showPreview, setShowPreview] = useState(false);
+  const [showPreview, setShowPreview] = useState(null);
 
   const researchProjects = [
     {
       title: "DEVELOPMENT OF WEBSITE TO ENHANCE SELF-CONFIDENCE THROUGH FASHION FOR THAI TEENAGERS",
       titleThai: "การพัฒนาเว็บไซต์ส่งเสริมความมั่นใจผ่านการแต่งกายสำหรับวัยรุ่นไทย",
-      description: "Research on developing a website platform that enhances self-confidence among Thai teenagers through fashion and personal styling. The study explores the relationship between digital fashion platforms, self-expression, and confidence building in adolescent development.",
+      description: "Designed, built and evaluated a fashion community for Thai teenagers aged 12–18 as a self-directed research project at Thammasat Secondary School. In a pre-test/post-test study of 31 students, mean self-confidence increased from 3.91 to 4.31 (paired-samples t-test: t = 3.66, p = 0.001). Satisfaction averaged 4.49/5. This small study measured change within the group; it does not establish causation or wider generalisability.",
       focus: "Web Development, UX/UI Design, Psychology",
-      status: "ONGOING",
-      date: "Recent",
-      previewUrl: "https://drive.google.com/file/d/1TOprEK2xUynNO_HgBWrEaldh_nfr3Lez/preview"
+      status: "COMPLETED",
+      date: "2025",
+      previewUrl: "https://drive.google.com/file/d/1eLEUXC34yY0Jl8dgjYT11u9Q4bf9qrtl/preview",
+      sourceUrl: "https://drive.google.com/drive/folders/1AYExZEA0ieagDKOaGRb3tbZP00pLmzi8",
+      codeUrl: "https://github.com/onfr0y/Sp-app"
     },
     {
       title: "HARVESTAI — AI-DRIVEN SUSTAINABLE AGRICULTURE FOR THAILAND",
       titleThai: "ระบบ AI เพื่อการเกษตรยั่งยืน",
-      description: "A sustainable agriculture initiative addressing soil degradation from continuous monoculture farming (cassava, corn, sugarcane) in Thailand. HarvestAI combines an LLM for personalized crop-rotation planning, ML-based weather forecasting (OpenWeatherMap, FarmWeather), time-series market-price prediction, and satellite-based land monitoring to guide farmers toward profitable, soil-restoring decisions. Aligned with UN SDGs 2, 9, and 12, and built around UNESCO AI ethics principles of transparency, explainability, and privacy.",
+      description: "Represented TSS Coder with HarvestAI, a smart-farming and soil-restoration project selected as one of 10 finalists from more than 300 international entries in Beyond Green: AI for a Thriving Future, held during the 3rd UNESCO Global Forum on the Ethics of Artificial Intelligence in Bangkok, 24–27 June 2025. Built a custom weather forecasting API using Ridge Regression and a Node.js/React application integrating n8n and an LLM to answer user queries.",
       focus: "LLM, Machine Learning, Time-Series Forecasting, Satellite Data, AI Ethics",
-      status: "IN DEVELOPMENT",
-      date: "Recent",
-      previewUrl: null,
+      status: "TOP 10 FINALIST",
+      date: "2025",
+      previewUrl: "https://drive.google.com/file/d/1slu7KIKb964KZ5DElfiWIVBDmNCFtJd5/preview",
+      sourceUrl: "https://drive.google.com/drive/folders/1V_WQyrfkF3BTsjuZ5XlPr6LsjSSOqlAr",
+      codeUrl: "https://github.com/onfr0y/Ai_comp_app",
       image: harvestaiPoster,
       imageAlt: "HarvestAI research poster"
     }
@@ -48,7 +52,7 @@ const Research = () => {
             <h2 className="text-xs uppercase tracking-wider mb-6 font-mono" style={t.muted}>RESEARCH & STUDIES</h2>
             <div className="font-mono text-xs leading-relaxed space-y-4" style={t.soft}>
               <p>
-                Ongoing research and studies in technology, design, and development.
+                Research and applied projects in technology, design, and development.
                 Exploring new ideas and methodologies.
               </p>
             </div>
@@ -124,21 +128,26 @@ const Research = () => {
                       </span>
                     ))}
                   </div>
+                  <div className="flex flex-wrap gap-5 text-xs mb-4">
+                    <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Project documents ↗</a>
+                    <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Source code ↗</a>
+                    <span style={t.muted}>{project.date}</span>
+                  </div>
                   {project.previewUrl && (
                     <div className="mt-4">
                       <button
-                        onClick={() => setShowPreview(!showPreview)}
+                        onClick={() => setShowPreview(showPreview === project.title ? null : project.title)}
                         className="text-xs px-4 py-2 uppercase tracking-wide hover:opacity-70 transition-opacity"
                         style={t.btn}
                       >
-                        {showPreview ? 'Close Preview' : 'Open Preview'}
+                        {showPreview === project.title ? 'Close Preview' : 'Open Preview'}
                       </button>
-                      {showPreview && (
+                      {showPreview === project.title && (
                         <div className="mt-4 overflow-hidden" style={t.iframeBox}>
                           <iframe
                             src={project.previewUrl}
                             className="w-full h-[600px] border-0"
-                            title="Research Preview"
+                            title={`${project.title} — document preview`}
                             allow="autoplay"
                           />
                         </div>
@@ -170,7 +179,7 @@ const Research = () => {
 
               <div className="pt-6" style={t.borderT}>
                 <p className="text-xs uppercase tracking-wider mb-4" style={t.muted}>STATUS</p>
-                <p className="text-sm" style={t.soft}>Active Research</p>
+                <p className="text-sm" style={t.soft}>Research & applied projects</p>
               </div>
             </div>
           </div>

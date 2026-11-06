@@ -21,6 +21,7 @@ const Contact = () => {
   const contactInfo = [
     { label: "EMAIL", value: "kittijustsaid@gmail.com", href: "mailto:kittijustsaid@gmail.com" },
     { label: "GITHUB", value: "github.com/onfr0y/PortfolioWebsite", href: "https://github.com/onfr0y/PortfolioWebsite" },
+    { label: "LINKEDIN", value: "linkedin.com/in/kitisakporkha", href: "https://www.linkedin.com/in/kitisakporkha" },
     { label: "LOCATION", value: "Bangkok, Thailand", href: null }
   ];
 
@@ -61,14 +62,14 @@ const Contact = () => {
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
-                  <div key={info.label} className="flex justify-between items-center py-4" style={index > 0 ? t.borderT : undefined}>
+                  <div key={info.label} className="flex flex-wrap justify-between items-center gap-3 py-4" style={index > 0 ? t.borderT : undefined}>
                     <span className="text-sm uppercase tracking-wider" style={t.muted}>{info.label}</span>
                     {info.href ? (
                       <a
                         href={info.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm hover:opacity-70 transition-opacity"
+                        className="text-sm break-all hover:opacity-70 transition-opacity"
                         style={t.text}
                       >
                         {info.value}

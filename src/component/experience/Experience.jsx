@@ -11,14 +11,13 @@ const t = {
 const Experience = () => {
   const experiences = [
     {
-      title: "FREELANCE",
-      company: "Freelance hahahah",
+      title: "CO-FOUNDER & PODCASTER",
+      company: "TwoTeenStory",
       period: "Present",
-      description: "Working as a freelance developer, taking on various projects and building cool stuff.",
+      description: "Co-founder and co-host of a Thai-English podcast exploring school, life, relationships, and money.",
       achievements: [
-        "Working on interesting projects",
-        "Learning new technologies",
-        "Having fun hahahah"
+        "Sharing personal stories and ideas through conversations in Thai and English",
+        "Building the TwoTeenStory website, featured in Selected Work"
       ]
     }
   ];
@@ -65,6 +64,16 @@ const Experience = () => {
                 </div>
               ))}
             </div>
+            <div className="mt-10 pt-6" style={t.borderT}>
+              <h2 className="text-xs uppercase tracking-wider mb-5" style={t.muted}>CERTIFICATES · CODECADEMY</h2>
+              <div className="space-y-4 text-sm" style={t.soft}>
+                <p>Learn C Skill Path <span style={t.muted}>· July 2026</span></p>
+                <p>Learn JavaScript Course <span style={t.muted}>· February 2026</span></p>
+                <p>Learn CSS Course <span style={t.muted}>· November 2025</span></p>
+                <p>OpenAI API Coding with Python Course <span style={t.muted}>· May 2025</span></p>
+              </div>
+              <a href="https://www.linkedin.com/in/kitisakporkha" target="_blank" rel="noopener noreferrer" className="inline-block mt-5 text-xs underline underline-offset-4">View LinkedIn profile ↗</a>
+            </div>
           </div>
         </div>
 
@@ -73,8 +82,8 @@ const Experience = () => {
           <div className="lg:sticky lg:top-24">
             <div className="space-y-8">
               <div>
-                <p className="text-xs uppercase tracking-wider mb-4" style={t.muted}>YEARS OF EXPERIENCE</p>
-                <p className="text-2xl font-bold" style={t.text}>4+</p>
+                <p className="text-xs uppercase tracking-wider mb-4" style={t.muted}>CURRENT STUDIES</p>
+                <p className="text-2xl font-bold" style={t.text}>SIIT</p>
               </div>
 
               <div className="pt-6" style={t.borderT}>

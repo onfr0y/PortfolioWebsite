@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 // component
@@ -30,7 +28,6 @@ const scrollToSection = (href) => {
 // receipt setup data
 
 function App() {
-  const [count, setCount] = useState(0)
   const [dockMode, setDockMode] = useState(false)
   const [isMobile, setIsMobile] = useState(
     typeof window !== 'undefined' ? window.innerWidth < 640 : false

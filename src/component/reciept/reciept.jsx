@@ -1,34 +1,7 @@
-import React, { useState, useRef } from 'react';
-import profileImage from '../../assets/profile.PNG';
+import SwarmPortrait from '../swarm/SwarmPortrait';
 import SkillsGlobe from '../globe/SkillsGlobe';
 
 const App = () => {
-    const [tilt, setTilt] = useState({ x: 0, y: 0 });
-    const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
-    const [isHovering, setIsHovering] = useState(false);
-    const cardRef = useRef(null);
-
-    const handleMouseMove = (e) => {
-        if (!cardRef.current) return;
-        const rect = cardRef.current.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left - rect.width / 2;
-        const mouseY = e.clientY - rect.top - rect.height / 2;
-        const rotateX = -(mouseY / (rect.height / 2)) * 12;
-        const rotateY = (mouseX / (rect.width / 2)) * 12;
-        const glareX = ((e.clientX - rect.left) / rect.width) * 100;
-        const glareY = ((e.clientY - rect.top) / rect.height) * 100;
-        setTilt({ x: rotateX, y: rotateY });
-        setGlare({ x: glareX, y: glareY, opacity: 0.18 });
-    };
-
-    const handleMouseEnter = () => setIsHovering(true);
-
-    const handleMouseLeave = () => {
-        setIsHovering(false);
-        setTilt({ x: 0, y: 0 });
-        setGlare({ x: 50, y: 50, opacity: 0 });
-    };
-
     return (
         <div className="w-full min-h-screen bg-white">
             {/* Three-column layout similar to e-commerce reference */}
@@ -49,7 +22,7 @@ const App = () => {
                                 <p className="font-semibold mb-2">INTERACTION</p>
                                 <p className="text-gray-600">
                                     Drag the globe to spin it.<br/>
-                                    Hover the photo to tilt it.
+                                    Tap or hover over the portrait to rebuild it.
                                 </p>
                             </div>
                         </div>
@@ -59,47 +32,8 @@ const App = () => {
                 {/* Center Column - Main Photo Display */}
                 <div className="col-span-12 lg:col-span-6 order-1 lg:order-2 flex items-center justify-center">
                     <div className="w-full flex flex-col items-center">
-                        {/* Large Photo - 3D tilt on hover */}
-                        <div
-                            style={{ perspective: '1000px' }}
-                            className="relative w-full max-w-sm sm:max-w-md lg:max-w-xl xl:max-w-2xl mb-8 sm:mb-10 lg:mb-12"
-                        >
-                            <div
-                                ref={cardRef}
-                                onMouseMove={handleMouseMove}
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                className="relative aspect-[3/4] bg-white overflow-hidden"
-                                style={{
-                                    transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale3d(${isHovering ? 1.03 : 1}, ${isHovering ? 1.03 : 1}, 1)`,
-                                    transition: isHovering ? 'transform 0.08s ease-out, box-shadow 0.3s ease' : 'transform 0.5s ease, box-shadow 0.5s ease',
-                                    transformStyle: 'preserve-3d',
-                                    cursor: 'crosshair',
-                                    boxShadow: isHovering
-                                        ? `${-tilt.y * 2.5}px ${tilt.x * 2.5}px 50px rgba(0,0,0,0.25), 0 20px 60px rgba(0,0,0,0.1)`
-                                        : '0 4px 20px rgba(0,0,0,0.08)',
-                                    willChange: 'transform',
-                                }}
-                            >
-                                {/* Main Photo Display */}
-                                <img
-                                    src={profileImage}
-                                    alt="Kittisak Porkha"
-                                    className="w-full h-full object-cover object-center"
-                                    loading="eager"
-                                    style={{ pointerEvents: 'none' }}
-                                />
-                                {/* Glare overlay */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none"
-                                    style={{
-                                        background: `radial-gradient(ellipse at ${glare.x}% ${glare.y}%, rgba(255,255,255,${glare.opacity}) 0%, transparent 65%)`,
-                                        transition: isHovering ? 'none' : 'opacity 0.5s ease',
-                                    }}
-                                />
-                            </div>
-                        </div>
-                        
+                        <SwarmPortrait />
+
                         {/* Skills Globe */}
                         <div className="flex flex-col items-center">
                             <p className="font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">drag to rotate</p>
@@ -115,7 +49,7 @@ const App = () => {
                         <div className="space-y-8">
                             <div>
                                 <h3 className="text-2xl font-bold mb-2">KITTISAK PORKHA</h3>
-                                <p className="text-sm text-gray-600 mb-4">Fullstack Engineer, AI Engineer, Electrical Engineer (hopefully)</p>
+                                <p className="text-sm text-gray-600 mb-4">Developer · TwoTeenStory Co-founder & Podcaster</p>
                                 <p className="text-2xl font-bold">onfr0y.</p>
                             </div>
                             
