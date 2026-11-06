@@ -16,7 +16,6 @@ export default function SwarmPortrait() {
     const photo = new Image();
     let frame = 0;
     let started = false;
-    try { started = sessionStorage.getItem('portfolio-portrait-seen') === '1'; } catch { /* Storage may be unavailable. */ }
     let visible = false;
     let disposed = false;
     let running = false;
@@ -91,11 +90,11 @@ export default function SwarmPortrait() {
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       if (!visible) stop();
-      else if (!started && photo.complete && photo.naturalWidth) { started = true; try { sessionStorage.setItem('portfolio-portrait-seen', '1'); } catch { /* Optional storage. */ } play(); }
+      else if (!started && photo.complete && photo.naturalWidth) { started = true; play(); }
     }, { threshold: 0.25 });
     observer.observe(host);
     photo.onload = () => {
-      if (!disposed && visible && !started) { started = true; try { sessionStorage.setItem('portfolio-portrait-seen', '1'); } catch { /* Optional storage. */ } play(); }
+      if (!disposed && visible && !started) { started = true; play(); }
     };
     photo.src = portrait;
     const onVisibility = () => { if (document.hidden) stop(); };

@@ -8,8 +8,6 @@ export default function PageRebuild() {
     const animations = new Set();
     const pending = new Set();
     const seen = new Set();
-    const key = 'portfolio-page-rebuild-v1';
-    try { JSON.parse(sessionStorage.getItem(key) || '[]').forEach(id => seen.add(id)); } catch { /* Storage may be unavailable. */ }
     const sections = [...document.querySelectorAll('#home, #about, #research, #experience, #contact')];
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
@@ -18,7 +16,6 @@ export default function PageRebuild() {
         observer.unobserve(section);
         if (seen.has(section.id)) continue;
         seen.add(section.id);
-        try { sessionStorage.setItem(key, JSON.stringify([...seen])); } catch { /* Animation remains usable without storage. */ }
         const blocks = [...section.querySelectorAll('h1, h2, h3, h4, p, li, img')].filter(el => !el.closest('.swarm-portrait') && !el.parentElement.closest('li'));
         blocks.forEach((el, i) => {
           const angle = i * 2.399;
